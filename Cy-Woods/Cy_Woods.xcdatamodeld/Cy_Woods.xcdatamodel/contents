@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13154.26" systemVersion="16G29" minimumToolsVersion="Xcode 8.0" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Assignment" representedClassName="Assignment" syncable="YES">
+        <attribute name="grade" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="assignments" inverseEntity="Category" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Class" inverseName="assignments" inverseEntity="Class" syncable="YES"/>
+    </entity>
+    <entity name="Category" representedClassName="Category" syncable="YES">
+        <attribute name="average" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="weight" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignment" inverseName="category" inverseEntity="Assignment" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Class" inverseName="categories" inverseEntity="Class" syncable="YES"/>
+    </entity>
+    <entity name="Class" representedClassName="Class" syncable="YES">
+        <attribute name="grade" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Assignment" inverseName="course" inverseEntity="Assignment" syncable="YES"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Category" inverseName="course" inverseEntity="Category" syncable="YES"/>
+        <relationship name="teacher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Teacher" inverseName="course" inverseEntity="Teacher" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="courses" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Teacher" representedClassName="Teacher" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Class" inverseName="teacher" inverseEntity="Class" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName=".User" syncable="YES">
+        <attribute name="gradeLevel" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="school" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="courses" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Class" inverseName="user" inverseEntity="Class" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Assignment" positionX="-261" positionY="108" width="128" height="103"/>
+        <element name="Category" positionX="-261" positionY="233" width="128" height="118"/>
+        <element name="Class" positionX="-441" positionY="108" width="128" height="148"/>
+        <element name="Teacher" positionX="-443" positionY="-18" width="128" height="88"/>
+        <element name="User" positionX="-623" positionY="108" width="128" height="133"/>
+    </elements>
+</model>
